@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Price Calculator</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .card {
+      background: #ffffff;
+      max-width: 420px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+      margin-top: 8px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      font-size: 18px;
+      background: #06c755;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
+      background: #f0fff5;
+      padding: 15px;
+      border-radius: 12px;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: bold;
+      color: #06c755;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>คำนวณราคาขาย</h2>
+
+    <label>ต้นทุนสินค้า</label>
+    <input type="number" id="cost" placeholder="เช่น 123">
+
+    <label>Margin ที่ต้องการ (%)</label>
+    <input type="number" id="margin" value="30">
+
+    <button onclick="calculatePrice()">คำนวณราคา</button>
+
+    <div id="result" class="result" style="display:none;"></div>
+  </div>
+
+  <script>
+    async function main() {
+      await liff.init({
+        liffId: "ใส่_LIFF_ID_ของคุณตรงนี้"
+      });
+    }
+
+    main();
+
+    function calculatePrice() {
+      const cost = Number(document.getElementById("cost").value);
+      const marginPercent = Number(document.getElementById("margin").value);
+
+      if (!cost || cost <= 0) {
+        showResult("กรุณาใส่ต้นทุนสินค้าให้ถูกต้อง");
+        return;
+      }
+
+      if (!marginPercent || marginPercent <= 0 || marginPercent >= 100) {
+        showResult("กรุณาใส่ Margin ระหว่าง 1-99%");
+        return;
+      }
+
+      const margin = marginPercent / 100;
+
+      // สูตร Margin
+      const rawSellPrice = cost / (1 - margin);
+
+      // ปัดขึ้นเป็นจำนวนเต็ม เช่น 175.71 → 176
+      const finalSellPrice = Math.ceil(rawSellPrice);
+
+      const profitBaht = finalSellPrice - cost;
+      const realMargin = (profitBaht / finalSellPrice) * 100;
+
+      showResult(`
+        ราคาขายที่แนะนำ<br>
+        <div class="price">${finalSellPrice.toLocaleString()} บาท</div>
+        ต้นทุน: ${cost.toLocaleString()} บาท<br>
+        ราคาก่อนปัด: ${rawSellPrice.toFixed(2)} บาท<br>
+        กำไร: ${profitBaht.toFixed(2)} บาท<br>
+        Margin จริงหลังปัด: ${realMargin.toFixed(2)}%
+      `);
+    }
+
+    function showResult(html) {
+      const result = document.getElementById("result");
+      result.style.display = "block";
+      result.innerHTML = html;
+    }
+  </script>
+
+</body>
+</html>
