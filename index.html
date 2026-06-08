@@ -6,17 +6,15 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V0.0.4</title>
+<title>Price Calculator V0.0.5</title>
 
 <style>
-
 body{
     margin:0;
     padding:20px;
     background:#f5f5f5;
     font-family:sans-serif;
 }
-
 .card{
     max-width:500px;
     margin:auto;
@@ -25,12 +23,10 @@ body{
     padding:20px;
     box-shadow:0 2px 10px rgba(0,0,0,.1);
 }
-
 h2{
     text-align:center;
     margin-top:0;
 }
-
 input{
     width:100%;
     box-sizing:border-box;
@@ -39,7 +35,6 @@ input{
     border:1px solid #ddd;
     border-radius:12px;
 }
-
 button{
     width:100%;
     margin-top:15px;
@@ -50,25 +45,21 @@ button{
     background:#06C755;
     color:white;
 }
-
 .result{
     margin-top:20px;
     display:none;
 }
-
 .price-main{
     font-size:42px;
     font-weight:bold;
     color:#06C755;
     text-align:center;
 }
-
 .suggest{
     display:flex;
     gap:10px;
     margin-top:10px;
 }
-
 .box{
     flex:1;
     background:#f7f7f7;
@@ -76,29 +67,24 @@ button{
     text-align:center;
     padding:10px;
 }
-
 .best{
     background:#06C755;
     color:white;
     font-weight:bold;
 }
-
 table{
     width:100%;
     margin-top:15px;
     border-collapse:collapse;
 }
-
 td{
     padding:6px;
     border-bottom:1px solid #eee;
 }
-
 td:last-child{
     text-align:right;
     font-weight:bold;
 }
-
 </style>
 </head>
 
@@ -108,238 +94,144 @@ td:last-child{
 
 <h2>คำนวณราคาขาย</h2>
 
-<input
-    type="number"
-    id="cost"
-    placeholder="กรอกต้นทุนสินค้า">
+<input type="number" id="cost" placeholder="กรอกต้นทุนสินค้า">
 
-<button onclick="calculate()">
-คำนวณราคา
-</button>
+<button onclick="calculate()">คำนวณราคา</button>
 
 <div id="result" class="result"></div>
 
 </div>
 
 <script>
-
 async function initLIFF(){
     try{
         await liff.init({
             liffId:"YOUR_LIFF_ID"
         });
-    }catch(e){}
+    }catch(e){
+        console.log(e);
+    }
 }
 
 initLIFF();
 
-function nextEndingPrice(start,endings){
+function nextEndingPrice(start, ending) {
+    let p = Math.ceil(start);
 
-    let p=Math.ceil(start);
-
-    while(true){
-
-        let last=p%10;
-
-        if(endings.includes(last)){
-            return p;
-        }
-
+    while ((p % 10) !== ending) {
         p++;
     }
-}
 
-function nextEndingPrice(start, endings) {
-  let p = Math.ceil(start);
-
-  while (true) {
-    let last = p % 10;
-
-    if (endings.includes(last)) {
-      return p;
-    }
-
-    p++;
-  }
-}
-
-function getBestPrice(price) {
-  const price5 = nextEndingPrice(price, [5]);
-  const price9 = nextEndingPrice(price, [9]);
-  const price0 = nextEndingPrice(price, [0]);
-
-  return {
-    price5,
-    price9,
-    price0,
-    best: price9
-  };
-}
-
-function nextEndingPrice(start, ending) {
-
-  let p = Math.ceil(start);
-
-  while ((p % 10) !== ending) {
-    p++;
-  }
-
-  return p;
+    return p;
 }
 
 function calcPrice(cost, profitPercent) {
+    const operatingCost = cost * 0.15;
+    const totalCost = cost + operatingCost;
+    const profit = totalCost * (profitPercent / 100);
+    const beforeVat = totalCost + profit;
+    const vat = beforeVat * 0.07;
+    const finalPrice = beforeVat + vat;
 
-  const operatingCost = cost * 0.15;
-
-  const totalCost = cost + operatingCost;
-
-  const profit = totalCost * (profitPercent / 100);
-
-  const beforeVat = totalCost + profit;
-
-  const vat = beforeVat * 0.07;
-
-  const finalPrice = beforeVat + vat;
-
-  return {
-    operatingCost,
-    totalCost,
-    profit,
-    beforeVat,
-    vat,
-    finalPrice,
-    sellPrice: nextEndingPrice(finalPrice, 9)
-  };
+    return {
+        operatingCost,
+        totalCost,
+        profit,
+        beforeVat,
+        vat,
+        finalPrice,
+        sellPrice: nextEndingPrice(finalPrice, 9)
+    };
 }
 
 function calculate() {
+    const cost = Number(document.getElementById('cost').value);
 
-  const cost = Number(
-    document.getElementById('cost').value
-  );
+    if (!cost || cost <= 0) {
+        alert('กรุณากรอกต้นทุนสินค้า');
+        return;
+    }
 
-  if (!cost || cost <= 0) {
-    alert('กรุณากรอกต้นทุนสินค้า');
-    return;
-  }
+    const p20 = calcPrice(cost, 20);
+    const p30 = calcPrice(cost, 30);
+    const p40 = calcPrice(cost, 40);
 
-  const p20 = calcPrice(cost, 20);
-  const p30 = calcPrice(cost, 30);
-  const p40 = calcPrice(cost, 40);
+    document.getElementById('result').style.display = 'block';
 
-  document.getElementById('result').style.display = 'block';
+    document.getElementById('result').innerHTML = `
 
-  document.getElementById('result').innerHTML = `
+        <div class="price-main">
+            ${p30.sellPrice.toLocaleString()} บาท
+        </div>
 
-  <div class="price-main">
-      ${p30.sellPrice.toLocaleString()} บาท
-  </div>
+        <div style="text-align:center;font-size:18px;margin-bottom:15px;">
+            ⭐ ราคาขายแนะนำ (กำไร 30%)
+        </div>
 
-  <div style="
-      text-align:center;
-      font-size:18px;
-      margin-bottom:15px;">
-      ⭐ ราคาขายแนะนำ (กำไร 30%)
-  </div>
+        <div class="suggest">
+            <div class="box">
+                ${p20.sellPrice}<br>
+                20%
+            </div>
 
-  <div class="suggest">
+            <div class="box best">
+                ${p30.sellPrice}<br>
+                30%
+            </div>
 
-      <div class="box">
-          ${p20.sellPrice}
-          <br>
-          20%
-      </div>
+            <div class="box">
+                ${p40.sellPrice}<br>
+                40%
+            </div>
+        </div>
 
-      <div class="box best">
-          ${p30.sellPrice}
-          <br>
-          30%
-      </div>
+        <table>
+            <tr>
+                <td>ต้นทุนสินค้า</td>
+                <td>${cost.toFixed(2)} บาท</td>
+            </tr>
 
-      <div class="box">
-          ${p40.sellPrice}
-          <br>
-          40%
-      </div>
+            <tr>
+                <td>ค่าใช้จ่ายดำเนินงาน</td>
+                <td>${p30.operatingCost.toFixed(2)} บาท</td>
+            </tr>
 
-  </div>
+            <tr>
+                <td>ต้นทุนรวม</td>
+                <td>${p30.totalCost.toFixed(2)} บาท</td>
+            </tr>
 
-  <table>
+            <tr>
+                <td>ช่วงราคาขาย</td>
+                <td>${p20.sellPrice} - ${p40.sellPrice} บาท</td>
+            </tr>
+        </table>
 
-      <tr>
-          <td>ต้นทุนสินค้า</td>
-          <td>${cost.toFixed(2)} บาท</td>
-      </tr>
+        <details style="margin-top:15px;background:#f7f7f7;padding:10px;border-radius:10px;">
+            <summary>ดูรายละเอียดการคำนวณ</summary>
 
-      <tr>
-          <td>ค่าใช้จ่ายดำเนินงาน</td>
-          <td>${p30.operatingCost.toFixed(2)} บาท</td>
-      </tr>
+            <br>
 
-      <tr>
-          <td>ต้นทุนรวม</td>
-          <td>${p30.totalCost.toFixed(2)} บาท</td>
-      </tr>
+            <b>กำไร 20%</b><br>
+            ราคาก่อน VAT : ${p20.beforeVat.toFixed(2)}<br>
+            VAT : ${p20.vat.toFixed(2)}<br>
+            ราคาคำนวณ : ${p20.finalPrice.toFixed(2)}<br>
+            ราคาขาย : ${p20.sellPrice}<br><br>
 
-      <tr>
-          <td>ช่วงราคาขาย</td>
-          <td>
-              ${p20.sellPrice}
-              -
-              ${p40.sellPrice}
-              บาท
-          </td>
-      </tr>
+            <b>กำไร 30%</b><br>
+            ราคาก่อน VAT : ${p30.beforeVat.toFixed(2)}<br>
+            VAT : ${p30.vat.toFixed(2)}<br>
+            ราคาคำนวณ : ${p30.finalPrice.toFixed(2)}<br>
+            ราคาขาย : ${p30.sellPrice}<br><br>
 
-  </table>
-
-  <details style="
-      margin-top:15px;
-      background:#f7f7f7;
-      padding:10px;
-      border-radius:10px;">
-
-      <summary>
-          ดูรายละเอียดการคำนวณ
-      </summary>
-
-      <br>
-
-      <b>กำไร 20%</b><br>
-      ราคาก่อน VAT :
-      ${p20.beforeVat.toFixed(2)}<br>
-      VAT :
-      ${p20.vat.toFixed(2)}<br>
-      ราคาคำนวณ :
-      ${p20.finalPrice.toFixed(2)}<br>
-      ราคาขาย :
-      ${p20.sellPrice}<br><br>
-
-      <b>กำไร 30%</b><br>
-      ราคาก่อน VAT :
-      ${p30.beforeVat.toFixed(2)}<br>
-      VAT :
-      ${p30.vat.toFixed(2)}<br>
-      ราคาคำนวณ :
-      ${p30.finalPrice.toFixed(2)}<br>
-      ราคาขาย :
-      ${p30.sellPrice}<br><br>
-
-      <b>กำไร 40%</b><br>
-      ราคาก่อน VAT :
-      ${p40.beforeVat.toFixed(2)}<br>
-      VAT :
-      ${p40.vat.toFixed(2)}<br>
-      ราคาคำนวณ :
-      ${p40.finalPrice.toFixed(2)}<br>
-      ราคาขาย :
-      ${p40.sellPrice}
-
-  </details>
-
-  `;
+            <b>กำไร 40%</b><br>
+            ราคาก่อน VAT : ${p40.beforeVat.toFixed(2)}<br>
+            VAT : ${p40.vat.toFixed(2)}<br>
+            ราคาคำนวณ : ${p40.finalPrice.toFixed(2)}<br>
+            ราคาขาย : ${p40.sellPrice}
+        </details>
+    `;
 }
-
 </script>
 
 </body>
