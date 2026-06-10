@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V0.0.8</title>
+<title>Price Calculator V0.0.9</title>
 
 <style>
 body{
@@ -203,33 +203,29 @@ function calculate() {
         </div>
 
         <div style="text-align:center;font-size:18px;margin-bottom:15px;">
-            ⭐ ราคาขายแนะนำ ยาทั่วไป (30%)
+            ⭐ ราคาขายแนะนำ
         </div>
 
         <div class="suggest">
             <div class="box best">
                 ${p30.sellPrice}<br>
-                30%<br>
                 <small>ยาทั่วไป</small>
             </div>
 
             <div class="box">
                 ${p60.sellPrice}<br>
-                60%<br>
                 <small>สมุนไพร</small>
             </div>
 
             <div class="box">
                 ${p80.sellPrice}<br>
-                80%<br>
                 <small>Beauty & Spa</small>
             </div>
         </div>
 
         <div class="private-box">
             👑 Private Label<br><br>
-            <span class="private-price">${p120.sellPrice} บาท</span><br>
-            กำไร 120%
+            <span class="private-price">${p120.sellPrice} บาท</span>
         </div>
 
         <table>
@@ -264,18 +260,18 @@ function calculate() {
 
             <br>
 
-            ${detailBlock('ราคาลด กำไร 10%', p10)}
+            ${detailBlock('🏷️ ราคาลด กำไร 10%', p10)}
             ${detailBlock('กำไร 20%', p20)}
-            ${detailBlock('ราคาแนะนำ ยาทั่วไป กำไร 30%', p30)}
+            ${detailBlock('⭐ ราคาแนะนำ ยาทั่วไป กำไร 30%', p30)}
             ${detailBlock('กำไร 40%', p40)}
             ${detailBlock('กำไร 50%', p50)}
-            ${detailBlock('สมุนไพรไทย กำไร 60%', p60)}
+            ${detailBlock('🌿 สมุนไพรไทย กำไร 60%', p60)}
             ${detailBlock('กำไร 70%', p70)}
-            ${detailBlock('Beauty & Spa กำไร 80%', p80)}
+            ${detailBlock('💄 Beauty & Spa กำไร 80%', p80)}
             ${detailBlock('กำไร 90%', p90)}
             ${detailBlock('กำไร 100%', p100)}
             ${detailBlock('กำไร 110%', p110)}
-            ${detailBlock('Private Label กำไร 120%', p120)}
+            ${detailBlock('👑 Private Label กำไร 120%', p120)}
             ${detailBlock('กำไร 130%', p130)}
             ${detailBlock('กำไร 140%', p140)}
             ${detailBlock('กำไร 150%', p150)}
