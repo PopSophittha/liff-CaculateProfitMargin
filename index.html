@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.0</title>
+<title>Price Calculator V1.0.1</title>
 
 <style>
 body{
@@ -209,16 +209,19 @@ function calculate() {
 
         <div class="suggest">
             <div class="box best">
+                💊<br>
                 ${p30.sellPrice}<br>
-                <small>ยาทั่วไป</small>
+                <small>ยา สินค้าทั่วไป</small>
             </div>
         
             <div class="box">
+                🌿<br>
                 ${p60.sellPrice}<br>
                 <small>สมุนไพร</small>
             </div>
         
             <div class="box">
+                💄<br>
                 ${p80.sellPrice}<br>
                 <small>Beauty & Spa</small>
             </div>
@@ -231,16 +234,6 @@ function calculate() {
         </div>
 
         <table>
-            <tr>
-                <td>ต้นทุนสินค้า</td>
-                <td>${cost.toFixed(2)} บาท</td>
-            </tr>
-
-            <tr>
-                <td>ค่าใช้จ่ายดำเนินงาน</td>
-                <td>${p30.operatingCost.toFixed(2)} บาท</td>
-            </tr>
-
             <tr>
                 <td>ต้นทุนรวม</td>
                 <td>${p30.totalCost.toFixed(2)} บาท</td>
@@ -262,6 +255,18 @@ function calculate() {
 
             <br>
 
+            <table>
+                <tr>
+                    <td>ต้นทุนสินค้า</td>
+                    <td>${cost.toFixed(2)} บาท</td>
+                </tr>
+    
+                <tr>
+                    <td>ค่าใช้จ่ายดำเนินงาน</td>
+                    <td>${p30.operatingCost.toFixed(2)} บาท</td>
+                </tr>
+            </table>
+        
             ${detailBlock('🏷️ ราคาลด กำไร 10%', p10)}
             ${detailBlock('กำไร 20%', p20)}
             ${detailBlock('⭐ ราคาแนะนำ ยาทั่วไป กำไร 30%', p30)}
