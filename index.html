@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V0.0.9</title>
+<title>Price Calculator V1.0.0</title>
 
 <style>
 body{
@@ -56,7 +56,8 @@ button{
     text-align:center;
 }
 .suggest{
-    display:flex;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
     gap:10px;
     margin-top:10px;
 }
@@ -166,7 +167,7 @@ function detailBlock(label, data) {
         ราคาก่อน VAT : ${data.beforeVat.toFixed(2)} บาท<br>
         VAT 7% : ${data.vat.toFixed(2)} บาท<br>
         ราคาคำนวณ : ${data.finalPrice.toFixed(2)} บาท<br>
-        ราคาขายปัดลงท้าย 5 : ${data.sellPrice} บาท<br><br>
+        ราคาขาย : ${data.sellPrice} บาท<br><br>
     `;
 }
 
@@ -211,21 +212,22 @@ function calculate() {
                 ${p30.sellPrice}<br>
                 <small>ยาทั่วไป</small>
             </div>
-
+        
             <div class="box">
                 ${p60.sellPrice}<br>
                 <small>สมุนไพร</small>
             </div>
-
+        
             <div class="box">
                 ${p80.sellPrice}<br>
                 <small>Beauty & Spa</small>
             </div>
-        </div>
-
-        <div class="private-box">
-            👑 Private Label<br><br>
-            <span class="private-price">${p120.sellPrice} บาท</span>
+        
+            <div class="box private-box" style="margin-top:0;">
+                👑<br>
+                ${p120.sellPrice}<br>
+                <small>Private Label</small>
+            </div>
         </div>
 
         <table>
@@ -245,8 +247,8 @@ function calculate() {
             </tr>
 
             <tr>
-                <td>ราคาลด 10%</td>
-                <td>${p10.sellPrice} บาท</td>
+                <td>ราคาลด</td>
+                <td>${p10.sellPrice} - ${p20.sellPrice} บาท</td>
             </tr>
 
             <tr>
