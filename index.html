@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V0.0.7</title>
+<title>Price Calculator V0.0.8</title>
 
 <style>
 body{
@@ -72,6 +72,18 @@ button{
     color:white;
     font-weight:bold;
 }
+.private-box{
+    margin-top:10px;
+    background:#FFF3CD;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+}
+.private-price{
+    font-size:30px;
+    font-weight:bold;
+    color:#C28A00;
+}
 table{
     width:100%;
     margin-top:15px;
@@ -84,6 +96,9 @@ td{
 td:last-child{
     text-align:right;
     font-weight:bold;
+}
+small{
+    font-size:12px;
 }
 </style>
 </head>
@@ -148,10 +163,10 @@ function calcPrice(cost, profitPercent) {
 function detailBlock(label, data) {
     return `
         <b>${label}</b><br>
-        ราคาก่อน VAT : ${data.beforeVat.toFixed(2)}<br>
-        VAT : ${data.vat.toFixed(2)}<br>
-        ราคาคำนวณ : ${data.finalPrice.toFixed(2)}<br>
-        ราคาขาย : ${data.sellPrice}<br><br>
+        ราคาก่อน VAT : ${data.beforeVat.toFixed(2)} บาท<br>
+        VAT 7% : ${data.vat.toFixed(2)} บาท<br>
+        ราคาคำนวณ : ${data.finalPrice.toFixed(2)} บาท<br>
+        ราคาขายปัดลงท้าย 5 : ${data.sellPrice} บาท<br><br>
     `;
 }
 
@@ -163,12 +178,21 @@ function calculate() {
         return;
     }
 
-    const p20 = calcPrice(cost, 20);
-    const p30 = calcPrice(cost, 30);
-    const p40 = calcPrice(cost, 40);
-    const p50 = calcPrice(cost, 50);
-    const p60 = calcPrice(cost, 60);
-    const p70 = calcPrice(cost, 70);
+    const p10  = calcPrice(cost, 10);
+    const p20  = calcPrice(cost, 20);
+    const p30  = calcPrice(cost, 30);
+    const p40  = calcPrice(cost, 40);
+    const p50  = calcPrice(cost, 50);
+    const p60  = calcPrice(cost, 60);
+    const p70  = calcPrice(cost, 70);
+    const p80  = calcPrice(cost, 80);
+    const p90  = calcPrice(cost, 90);
+    const p100 = calcPrice(cost, 100);
+    const p110 = calcPrice(cost, 110);
+    const p120 = calcPrice(cost, 120);
+    const p130 = calcPrice(cost, 130);
+    const p140 = calcPrice(cost, 140);
+    const p150 = calcPrice(cost, 150);
 
     document.getElementById('result').style.display = 'block';
 
@@ -179,24 +203,33 @@ function calculate() {
         </div>
 
         <div style="text-align:center;font-size:18px;margin-bottom:15px;">
-            ⭐ ราคาขายแนะนำ (กำไร 30%)
+            ⭐ ราคาขายแนะนำ ยาทั่วไป (30%)
         </div>
 
         <div class="suggest">
             <div class="box best">
                 ${p30.sellPrice}<br>
-                30%
+                30%<br>
+                <small>ยาทั่วไป</small>
             </div>
 
             <div class="box">
-                ${p40.sellPrice}<br>
-                40%
+                ${p60.sellPrice}<br>
+                60%<br>
+                <small>สมุนไพร</small>
             </div>
 
             <div class="box">
-                ${p50.sellPrice}<br>
-                50%
+                ${p80.sellPrice}<br>
+                80%<br>
+                <small>Beauty & Spa</small>
             </div>
+        </div>
+
+        <div class="private-box">
+            👑 Private Label<br><br>
+            <span class="private-price">${p120.sellPrice} บาท</span><br>
+            กำไร 120%
         </div>
 
         <table>
@@ -216,13 +249,13 @@ function calculate() {
             </tr>
 
             <tr>
-                <td>ราคาลด 20%</td>
-                <td>${p20.sellPrice} บาท</td>
+                <td>ราคาลด 10%</td>
+                <td>${p10.sellPrice} บาท</td>
             </tr>
 
             <tr>
-                <td>ช่วงราคาขายหลัก</td>
-                <td>${p30.sellPrice} - ${p50.sellPrice} บาท</td>
+                <td>ช่วงราคาปกติ</td>
+                <td>${p30.sellPrice} - ${p80.sellPrice} บาท</td>
             </tr>
         </table>
 
@@ -231,13 +264,21 @@ function calculate() {
 
             <br>
 
-            ${detailBlock('ราคาลด กำไร 20%', p20)}
-            ${detailBlock('ราคาแนะนำ กำไร 30%', p30)}
+            ${detailBlock('ราคาลด กำไร 10%', p10)}
+            ${detailBlock('กำไร 20%', p20)}
+            ${detailBlock('ราคาแนะนำ ยาทั่วไป กำไร 30%', p30)}
             ${detailBlock('กำไร 40%', p40)}
             ${detailBlock('กำไร 50%', p50)}
-            ${detailBlock('กำไร 60%', p60)}
+            ${detailBlock('สมุนไพรไทย กำไร 60%', p60)}
             ${detailBlock('กำไร 70%', p70)}
-
+            ${detailBlock('Beauty & Spa กำไร 80%', p80)}
+            ${detailBlock('กำไร 90%', p90)}
+            ${detailBlock('กำไร 100%', p100)}
+            ${detailBlock('กำไร 110%', p110)}
+            ${detailBlock('Private Label กำไร 120%', p120)}
+            ${detailBlock('กำไร 130%', p130)}
+            ${detailBlock('กำไร 140%', p140)}
+            ${detailBlock('กำไร 150%', p150)}
         </details>
     `;
 }
