@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.3</title>
+<title>Price Calculator V1.0.4</title>
 
 <style>
 body{
@@ -144,6 +144,7 @@ function nextEndingPrice(start, ending) {
 function calcPrice(cost, profitPercent) {
     const operatingCost = cost * 0.15;
     const totalCost = cost + operatingCost;
+    const staffBuy = Math.round(totalCost);
     const profit = totalCost * (profitPercent / 100);
     const beforeVat = totalCost + profit;
     const vat = beforeVat * 0.07;
@@ -153,6 +154,7 @@ function calcPrice(cost, profitPercent) {
         profitPercent,
         operatingCost,
         totalCost,
+        staffBuy,
         profit,
         beforeVat,
         vat,
@@ -236,7 +238,7 @@ function calculate() {
         <table>
             <tr>
                 <td>พนักงานซื้อ</td>
-                <td>${p30.totalCost} บาท</td>
+                <td>${p30.staffBuy} บาท</td>
             </tr>
 
             <tr>
