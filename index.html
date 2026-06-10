@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V0.0.6</title>
+<title>Price Calculator V0.0.7</title>
 
 <style>
 body{
@@ -134,6 +134,7 @@ function calcPrice(cost, profitPercent) {
     const finalPrice = beforeVat + vat;
 
     return {
+        profitPercent,
         operatingCost,
         totalCost,
         profit,
@@ -142,6 +143,16 @@ function calcPrice(cost, profitPercent) {
         finalPrice,
         sellPrice: nextEndingPrice(finalPrice, 5)
     };
+}
+
+function detailBlock(label, data) {
+    return `
+        <b>${label}</b><br>
+        ราคาก่อน VAT : ${data.beforeVat.toFixed(2)}<br>
+        VAT : ${data.vat.toFixed(2)}<br>
+        ราคาคำนวณ : ${data.finalPrice.toFixed(2)}<br>
+        ราคาขาย : ${data.sellPrice}<br><br>
+    `;
 }
 
 function calculate() {
@@ -155,6 +166,9 @@ function calculate() {
     const p20 = calcPrice(cost, 20);
     const p30 = calcPrice(cost, 30);
     const p40 = calcPrice(cost, 40);
+    const p50 = calcPrice(cost, 50);
+    const p60 = calcPrice(cost, 60);
+    const p70 = calcPrice(cost, 70);
 
     document.getElementById('result').style.display = 'block';
 
@@ -169,11 +183,6 @@ function calculate() {
         </div>
 
         <div class="suggest">
-            <div class="box">
-                ${p20.sellPrice}<br>
-                20%
-            </div>
-
             <div class="box best">
                 ${p30.sellPrice}<br>
                 30%
@@ -182,6 +191,11 @@ function calculate() {
             <div class="box">
                 ${p40.sellPrice}<br>
                 40%
+            </div>
+
+            <div class="box">
+                ${p50.sellPrice}<br>
+                50%
             </div>
         </div>
 
@@ -202,33 +216,28 @@ function calculate() {
             </tr>
 
             <tr>
-                <td>ช่วงราคาขาย</td>
-                <td>${p20.sellPrice} - ${p40.sellPrice} บาท</td>
+                <td>ราคาลด 20%</td>
+                <td>${p20.sellPrice} บาท</td>
+            </tr>
+
+            <tr>
+                <td>ช่วงราคาขายหลัก</td>
+                <td>${p30.sellPrice} - ${p50.sellPrice} บาท</td>
             </tr>
         </table>
 
         <details style="margin-top:15px;background:#f7f7f7;padding:10px;border-radius:10px;">
-            <summary>ดูรายละเอียดการคำนวณ</summary>
+            <summary>ดูรายละเอียดการคำนวณทั้งหมด</summary>
 
             <br>
 
-            <b>กำไร 20%</b><br>
-            ราคาก่อน VAT : ${p20.beforeVat.toFixed(2)}<br>
-            VAT : ${p20.vat.toFixed(2)}<br>
-            ราคาคำนวณ : ${p20.finalPrice.toFixed(2)}<br>
-            ราคาขาย : ${p20.sellPrice}<br><br>
+            ${detailBlock('ราคาลด กำไร 20%', p20)}
+            ${detailBlock('ราคาแนะนำ กำไร 30%', p30)}
+            ${detailBlock('กำไร 40%', p40)}
+            ${detailBlock('กำไร 50%', p50)}
+            ${detailBlock('กำไร 60%', p60)}
+            ${detailBlock('กำไร 70%', p70)}
 
-            <b>กำไร 30%</b><br>
-            ราคาก่อน VAT : ${p30.beforeVat.toFixed(2)}<br>
-            VAT : ${p30.vat.toFixed(2)}<br>
-            ราคาคำนวณ : ${p30.finalPrice.toFixed(2)}<br>
-            ราคาขาย : ${p30.sellPrice}<br><br>
-
-            <b>กำไร 40%</b><br>
-            ราคาก่อน VAT : ${p40.beforeVat.toFixed(2)}<br>
-            VAT : ${p40.vat.toFixed(2)}<br>
-            ราคาคำนวณ : ${p40.finalPrice.toFixed(2)}<br>
-            ราคาขาย : ${p40.sellPrice}
         </details>
     `;
 }
