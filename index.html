@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.1</title>
+<title>Price Calculator V1.0.2</title>
 
 <style>
 body{
@@ -235,8 +235,8 @@ function calculate() {
 
         <table>
             <tr>
-                <td>ต้นทุนรวม</td>
-                <td>${p30.totalCost.toFixed(2)} บาท</td>
+                <td>พนักงานซื้อ</td>
+                <td>${p30.totalCost} บาท</td>
             </tr>
 
             <tr>
@@ -264,6 +264,11 @@ function calculate() {
                 <tr>
                     <td>ค่าใช้จ่ายดำเนินงาน</td>
                     <td>${p30.operatingCost.toFixed(2)} บาท</td>
+                </tr>
+                
+                <tr>
+                    <td>ต้นทุนรวม</td>
+                    <td>${p30.totalCost.toFixed(2)} บาท</td>
                 </tr>
             </table>
         
