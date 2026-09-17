@@ -141,17 +141,29 @@ function nextEndingPrice(start, ending) {
     return p;
 }
 
-function calcPrice(cost, profitPercent) {
+function calcPrice(cost, marginPercent) {
     const operatingCost = cost * 0.15;
     const totalCost = cost + operatingCost;
-    const staffBuy = Math.round(totalCost);
-    const profit = totalCost * (profitPercent / 100);
-    const beforeVat = totalCost + profit;
+
+    const margin = marginPercent / 100;
+
+    // ราคาก่อน VAT ที่ทำให้ได้ Margin ตามต้องการ
+    const beforeVat = totalCost / (1 - margin);
+
+    // กำไรจริง
+    const profit = beforeVat - totalCost;
+
+    // VAT
     const vat = beforeVat * 0.07;
+
+    // ราคาขายรวม VAT
     const finalPrice = beforeVat + vat;
 
+    // ราคาพนักงานซื้อ
+    const staffBuy = Math.round(totalCost);
+
     return {
-        profitPercent,
+        marginPercent,
         operatingCost,
         totalCost,
         staffBuy,
