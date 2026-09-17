@@ -142,18 +142,24 @@ function nextEndingPrice(start, ending) {
 }
 
 function calcPrice(cost, marginPercent) {
+
     const operatingCost = cost * 0.15;
     const totalCost = cost + operatingCost;
 
     const margin = marginPercent / 100;
 
-    // ราคาก่อน VAT ที่ทำให้ได้ Margin ตามต้องการ
+    // Margin สูงสุด 99%
+    if (margin >= 1) {
+        return null;
+    }
+
+    // สูตร Margin จริง
     const beforeVat = totalCost / (1 - margin);
 
     // กำไรจริง
     const profit = beforeVat - totalCost;
 
-    // VAT
+    // VAT 7%
     const vat = beforeVat * 0.07;
 
     // ราคาขายรวม VAT
@@ -174,7 +180,7 @@ function calcPrice(cost, marginPercent) {
         sellPrice: nextEndingPrice(finalPrice, 5)
     };
 }
-
+    
 function detailBlock(label, data) {
     return `
         <b>${label}</b><br>
@@ -193,21 +199,17 @@ function calculate() {
         return;
     }
 
-    const p10  = calcPrice(cost, 10);
-    const p20  = calcPrice(cost, 20);
-    const p30  = calcPrice(cost, 30);
-    const p40  = calcPrice(cost, 40);
-    const p50  = calcPrice(cost, 50);
-    const p60  = calcPrice(cost, 60);
-    const p70  = calcPrice(cost, 70);
-    const p80  = calcPrice(cost, 80);
-    const p90  = calcPrice(cost, 90);
-    const p100 = calcPrice(cost, 100);
-    const p110 = calcPrice(cost, 110);
-    const p120 = calcPrice(cost, 120);
-    const p130 = calcPrice(cost, 130);
-    const p140 = calcPrice(cost, 140);
-    const p150 = calcPrice(cost, 150);
+const p10 = calcPrice(cost, 10);
+const p20 = calcPrice(cost, 20);
+const p30 = calcPrice(cost, 30);
+const p40 = calcPrice(cost, 40);
+const p50 = calcPrice(cost, 50);
+const p60 = calcPrice(cost, 60);
+const p70 = calcPrice(cost, 70);
+const p80 = calcPrice(cost, 80);
+const p90 = calcPrice(cost, 90);
+const p95 = calcPrice(cost, 95);
+const p99 = calcPrice(cost, 99);
 
     document.getElementById('result').style.display = 'block';
 
@@ -297,12 +299,9 @@ function calculate() {
             ${detailBlock('Margin 70%', p70)}
             ${detailBlock('💄 Beauty & Spa Margin 80%', p80)}
             ${detailBlock('Margin 90%', p90)}
-            ${detailBlock('Margin 100%', p100)}
-            ${detailBlock('Margin 110%', p110)}
-            ${detailBlock('👑 Private Label Margin 120%', p120)}
-            ${detailBlock('Margin 130%', p130)}
-            ${detailBlock('Margin 140%', p140)}
-            ${detailBlock('Margin 150%', p150)}
+            ${detailBlock('Margin 95%', p95)}
+            ${detailBlock('🔥 Maximum Margin 99%', p99)}
+            
         </details>
     `;
 }
