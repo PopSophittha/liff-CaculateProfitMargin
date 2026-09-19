@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.16</title>
+<title>Price Calculator V1.0.17</title>
 
 <style>
 body{
@@ -141,10 +141,7 @@ function nextEndingPrice(start, ending) {
     return p;
 }
 
-function calcPrice(cost, marginPercent) {
-
-    const operatingCost = cost * 0.15;
-    const totalCost = cost + operatingCost;
+function calcPrice(totalCost, marginPercent) {
 
     const margin = marginPercent / 100;
 
@@ -193,6 +190,9 @@ function detailBlock(label, data) {
 
 function calculate() {
     const cost = Number(document.getElementById('cost').value);
+    
+    const operatingCost = cost * 0.15;
+    const totalCost = cost + operatingCost;
 
     if (!cost || cost <= 0) {
         alert('กรุณากรอกต้นทุนสินค้า');
@@ -200,39 +200,39 @@ function calculate() {
     }
 
 
-    const p20 = calcPrice(cost, 20);
-    const p25 = calcPrice(cost, 25);
-    const p30 = calcPrice(cost, 30);
-    const p35 = calcPrice(cost, 35);
-    const p40 = calcPrice(cost, 40);
-    const p45 = calcPrice(cost, 45);
-    const p50 = calcPrice(cost, 50);
-    const p55 = calcPrice(cost, 55);
-    const p58 = calcPrice(cost, 58);
-    const p60 = calcPrice(cost, 60);
-    const p70 = calcPrice(cost, 70);
+    const p20 = calcPrice(totalCost, 20);
+    const p25 = calcPrice(totalCost, 25);
+    const p30 = calcPrice(totalCost, 30);
+    const p35 = calcPrice(totalCost, 35);
+    const p40 = calcPrice(totalCost, 40);
+    const p45 = calcPrice(totalCost, 45);
+    const p50 = calcPrice(totalCost, 50);
+    const p55 = calcPrice(totalCost, 55);
+    const p58 = calcPrice(totalCost, 58);
+    const p60 = calcPrice(totalCost, 60);
+    const p70 = calcPrice(totalCost, 70);
 
     let level1Price;
     let level2Price;
     let level3Price;
     let level4Price;
 
-    if (cost < 300) {
+    if (totalCost < 300) {
         level1Price = p60.sellPrice;
         level2Price = p58.sellPrice;
         level3Price = p55.sellPrice;
         level4Price = p35.sellPrice;
-    } else if (cost < 400) {
+    } else if (totalCost < 400) {
         level1Price = p50.sellPrice;
         level2Price = p45.sellPrice;
         level3Price = p40.sellPrice;
         level4Price = p30.sellPrice;
-    } else if (cost < 500) {
+    } else if (totalCost < 500) {
         level1Price = p40.sellPrice;
         level2Price = p35.sellPrice;
         level3Price = p30.sellPrice;
         level4Price = p25.sellPrice;
-    } else if (cost < 600) {
+    } else if (totalCost < 600) {
         level1Price = p35.sellPrice;
         level2Price = p30.sellPrice;
         level3Price = p25.sellPrice;
