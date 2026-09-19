@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.20</title>
+<title>Price Calculator V1.0.21</title>
 
 <style>
 body{
@@ -306,6 +306,7 @@ function calculate() {
             </tr>
             <tr>
                 <td>สินค้าใกล้หมดอายุ</td>
+                <td></td>
             </tr>
             <tr>
                 <td>6 เดือน</td>
@@ -313,11 +314,11 @@ function calculate() {
             </tr>
             <tr>
                 <td>3 เดือน</td>
-                <td>${(level1Price/2).toLocaleString()} บาท</td>
+                <td>${nextEndingPrice((level1Price/2),5).toLocaleString()} บาท</td>
             </tr>
             <tr>
                 <td>Expired</td>
-                <td>${(totalCost/2).toLocaleString()} บาท</td>
+                <td>${nextEndingPrice((totalCost/2),5).toLocaleString()} บาท</td>
             </tr>
         </table>
 
