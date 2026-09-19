@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.15</title>
+<title>Price Calculator V1.0.16</title>
 
 <style>
 body{
@@ -217,17 +217,17 @@ function calculate() {
     let level3Price;
     let level4Price;
 
-    if (cost < 100) {
+    if (cost < 300) {
         level1Price = p60.sellPrice;
         level2Price = p58.sellPrice;
         level3Price = p55.sellPrice;
         level4Price = p35.sellPrice;
-    } else if (cost < 200) {
+    } else if (cost < 400) {
         level1Price = p50.sellPrice;
         level2Price = p45.sellPrice;
         level3Price = p40.sellPrice;
         level4Price = p30.sellPrice;
-    } else if (cost <= 500) {
+    } else if (cost < 500) {
         level1Price = p40.sellPrice;
         level2Price = p35.sellPrice;
         level3Price = p30.sellPrice;
