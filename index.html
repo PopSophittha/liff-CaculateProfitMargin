@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.26</title>
+<title>Price Calculator V1.0.27</title>
 
 <style>
 body{
@@ -385,7 +385,12 @@ function calculate() {
             </table>
         
             <br>
+        </details>
+    
+        <details style="margin-top:15px;background:#f7f7f7;padding:10px;border-radius:10px;">
+            <summary>ดูการคำนวณ Margin</summary>
 
+            <br>
             ${detailBlock('Margin 20%', p20)}
             ${detailBlock('Margin 25%', p25)}
             ${detailBlock('Margin 30%', p30)}
@@ -396,7 +401,8 @@ function calculate() {
             ${detailBlock('Margin 55%', p55)}
             ${detailBlock('Margin 58%', p58)}
             ${detailBlock('Margin 60%', p60)}
-           
+            
+            <br>
         </details>
     `;
 }
