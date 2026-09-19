@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.12</title>
+<title>Price Calculator V1.0.13</title>
 
 <style>
 body{
@@ -252,46 +252,23 @@ const p70 = calcPrice(cost, 70);
 
         <table>
             <tr>
+                 <td>ต้นทุนสินค้า</td>
+                  <td>${cost.toFixed(2)} บาท</td>
+             </tr>
+    
+             <tr>
+                  <td>ค่าใช้จ่ายดำเนินงาน</td>
+                  <td>${p30.operatingCost.toFixed(2)} บาท</td>
+              </tr>
+                
+             <tr>
+                 <td>ต้นทุนรวม</td>
+                 <td>${p30.totalCost.toFixed(2)} บาท</td>
+            </tr>
+            <tr>
                 <td>พนักงานซื้อ</td>
                 <td>${p30.staffBuy} บาท</td>
             </tr>
-
-            <tr>
-                <td>ช่วงราคา</td>
-                <td>ระดับที่1</td>
-                <td>ระดับที่2</td>
-                <td>ระดับที่3</td>
-            </tr>
-            <tr>
-                <td>0-299฿</td>
-                <td>${p60.sellPrice}</td>
-                <td>${p58.sellPrice}</td>
-                <td>${p55.sellPrice}</td>
-            </tr>
-            <tr>
-                <td>300-399฿</td>
-                <td>${p50.sellPrice}</td>
-                <td>${p45.sellPrice}</td>
-                <td>${p40.sellPrice}</td>
-            </tr>
-            <tr>    
-                <td>400-499฿</td>
-                <td>${p40.sellPrice}</td>
-                <td>${p35.sellPrice}</td>
-                <td>${p30.sellPrice}</td>
-             </tr>
-            <tr>   
-                <td>500-599฿</td>
-                <td>${p35.sellPrice}</td>
-                <td>${p30.sellPrice}</td>
-                <td>${p25.sellPrice}</td>
-            </tr>
-            <tr>    
-                <td>600฿+</td>
-                <td>${p30.sellPrice}</td>
-                <td>${p25.sellPrice}</td>
-                <td>${p20.sellPrice}</td>
-             </tr>
         </table>
 
         <details style="margin-top:15px;background:#f7f7f7;padding:10px;border-radius:10px;">
@@ -301,19 +278,47 @@ const p70 = calcPrice(cost, 70);
 
             <table>
                 <tr>
-                    <td>ต้นทุนสินค้า</td>
-                    <td>${cost.toFixed(2)} บาท</td>
+                    <td>ช่วงราคา</td>
+                    <td>ระดับที่1</td>
+                    <td>ระดับที่2</td>
+                    <td>ระดับที่3</td>
+                    <td>คนไทย</td>
                 </tr>
-    
                 <tr>
-                    <td>ค่าใช้จ่ายดำเนินงาน</td>
-                    <td>${p30.operatingCost.toFixed(2)} บาท</td>
+                    <td>0-299฿</td>
+                    <td>${p60.sellPrice}</td>
+                    <td>${p58.sellPrice}</td>
+                    <td>${p55.sellPrice}</td>
+                    <td>${p35.sellPrice}</td>
                 </tr>
-                
                 <tr>
-                    <td>ต้นทุนรวม</td>
-                    <td>${p30.totalCost.toFixed(2)} บาท</td>
+                    <td>300-399฿</td>
+                    <td>${p50.sellPrice}</td>
+                    <td>${p45.sellPrice}</td>
+                    <td>${p40.sellPrice}</td>
+                    <td>${p30.sellPrice}</td>
                 </tr>
+                <tr>    
+                    <td>400-499฿</td>
+                    <td>${p40.sellPrice}</td>
+                    <td>${p35.sellPrice}</td>
+                    <td>${p30.sellPrice}</td>
+                    <td>${p25.sellPrice}</td>
+                 </tr>
+                <tr>   
+                    <td>500-599฿</td>
+                    <td>${p35.sellPrice}</td>
+                    <td>${p30.sellPrice}</td>
+                    <td>${p25.sellPrice}</td>
+                    <td>${p20.sellPrice}</td>
+                </tr>
+                <tr>    
+                    <td>600฿+</td>
+                    <td>${p30.sellPrice}</td>
+                    <td>${p25.sellPrice}</td>
+                    <td>${p20.sellPrice}</td>
+                    <td> - </td>
+                 </tr>
             </table>
         
             <br>
