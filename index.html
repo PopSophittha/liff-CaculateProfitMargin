@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.8</title>
+<title>Price Calculator V1.0.9</title>
 
 <style>
 body{
@@ -226,27 +226,27 @@ const p70 = calcPrice(cost, 70);
 
         <div class="suggest">
             <div class="box best">
-                💊 0฿ - 299฿<br>
+                💊 <br>
                 ${p58.sellPrice}<br>
-                <small>ยา สินค้าทั่วไป</small>
+                <small>0฿ - 299฿</small>
             </div>
         
             <div class="box">
-                🌿 300฿ - 399฿<br>
+                🌿 <br>
                 ${p45.sellPrice}<br>
-                <small>สมุนไพร</small>
+                <small>300฿ - 399฿</small>
             </div>
         
             <div class="box">
-                💄 400฿ - 499฿<br>
+                💄 <br>
                 ${p35.sellPrice}<br>
-                <small>Beauty & Spa</small>
+                <small>400฿ - 499฿</small>
             </div>
         
             <div class="box private-box" style="margin-top:0;">
-                👑 500฿ - 599฿<br>
+                👑 <br>
                 ${p30.sellPrice}<br>
-                <small>Private Label</small>
+                <small>500฿ - 599฿</small>
             </div>
         </div>
 
@@ -257,13 +257,12 @@ const p70 = calcPrice(cost, 70);
             </tr>
 
             <tr>
-                <td>ราคาลด</td>
-                <td>${p10.sellPrice} - ${p20.sellPrice} บาท</td>
-            </tr>
-
-            <tr>
-                <td>ช่วงราคาปกติ</td>
-                <td>${p30.sellPrice} - ${p80.sellPrice} บาท</td>
+                <td>=ช่วงราคา</td>
+                <td>0-299฿ ${p60.sellPrice} / ${p58.sellPrice} / ${p55.sellPrice}</td>
+                <td>300-399฿ ${p50.sellPrice} / ${p45.sellPrice} / ${p40.sellPrice}</td>
+                <td>400-499฿ ${p40.sellPrice} / ${p35.sellPrice} / ${p30.sellPrice}</td>
+                <td>500-599฿ ${p35.sellPrice} / ${p30.sellPrice} / ${p25.sellPrice}</td>
+                <td>600฿+ ${p30.sellPrice} / ${p25.sellPrice} / ${p20.sellPrice}</td>
             </tr>
         </table>
 
@@ -291,18 +290,17 @@ const p70 = calcPrice(cost, 70);
         
             <br>
 
-            ${detailBlock('🏷️ ราคาลด Margin 10%', p10)}
             ${detailBlock('Margin 20%', p20)}
-            ${detailBlock('⭐ ราคาแนะนำ ยาทั่วไป Margin 30%', p30)}
+            ${detailBlock('Margin 25%', p25)}
+            ${detailBlock('Margin 30%', p30)}
+            ${detailBlock('Margin 35%', p35)}
             ${detailBlock('Margin 40%', p40)}
+            ${detailBlock('Margin 45%', p45)}
             ${detailBlock('Margin 50%', p50)}
-            ${detailBlock('🌿 สมุนไพรไทย Margin 60%', p60)}
-            ${detailBlock('Margin 70%', p70)}
-            ${detailBlock('💄 Beauty & Spa Margin 80%', p80)}
-            ${detailBlock('Margin 90%', p90)}
-            ${detailBlock('Margin 95%', p95)}
-            ${detailBlock('👑 Maximum Margin 99%', p99)}
-            
+            ${detailBlock('Margin 55%', p55)}
+            ${detailBlock('Margin 58%', p58)}
+            ${detailBlock('Margin 60%', p60)}
+           
         </details>
     `;
 }
