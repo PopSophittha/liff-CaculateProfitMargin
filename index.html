@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.13</title>
+<title>Price Calculator V1.0.14</title>
 
 <style>
 body{
@@ -200,17 +200,49 @@ function calculate() {
     }
 
 
-const p20 = calcPrice(cost, 20);
-const p25 = calcPrice(cost, 25);
-const p30 = calcPrice(cost, 30);
-const p35 = calcPrice(cost, 35);
-const p40 = calcPrice(cost, 40);
-const p45 = calcPrice(cost, 45);
-const p50 = calcPrice(cost, 50);
-const p55 = calcPrice(cost, 55);
-const p58 = calcPrice(cost, 58);
-const p60 = calcPrice(cost, 60);
-const p70 = calcPrice(cost, 70);
+    const p20 = calcPrice(cost, 20);
+    const p25 = calcPrice(cost, 25);
+    const p30 = calcPrice(cost, 30);
+    const p35 = calcPrice(cost, 35);
+    const p40 = calcPrice(cost, 40);
+    const p45 = calcPrice(cost, 45);
+    const p50 = calcPrice(cost, 50);
+    const p55 = calcPrice(cost, 55);
+    const p58 = calcPrice(cost, 58);
+    const p60 = calcPrice(cost, 60);
+    const p70 = calcPrice(cost, 70);
+
+    let level1Price;
+    let level2Price;
+    let level3Price;
+    let level4Price;
+
+    if (cost < 100) {
+        level1Price = p20.sellPrice;
+        level2Price = p20.sellPrice;
+        level3Price = p20.sellPrice;
+        level4Price = p20.sellPrice;
+    } else if (cost < 200) {
+        level1Price = p35.sellPrice;
+        level2Price = p20.sellPrice;
+        level3Price = p20.sellPrice;
+        level4Price = p20.sellPrice;
+    } else if (cost <= 500) {
+        level1Price = p40.sellPrice;
+        level2Price = p20.sellPrice;
+        level3Price = p20.sellPrice;
+        level4Price = p20.sellPrice;
+    } else if (cost < 600) {
+        level1Price = p45.sellPrice;
+        level2Price = p20.sellPrice;
+        level3Price = p20.sellPrice;
+        level4Price = p20.sellPrice;
+    } else {
+        level1Price = p50.sellPrice;
+        level2Price = p20.sellPrice;
+        level3Price = p20.sellPrice;
+        level4Price = p20.sellPrice;
+    }
 
     document.getElementById('result').style.display = 'block';
 
@@ -226,27 +258,27 @@ const p70 = calcPrice(cost, 70);
 
         <div class="suggest">
             <div class="box best">
-                🌿 <br>
-                ${p58.sellPrice}<br>
-                <small>0฿ - 299฿</small>
+                1️⃣ <br>
+                ${level1Price}<br>
+                <small>ระดับที่ 1</small>
             </div>
         
             <div class="box">
-                💊 <br>
-                ${p45.sellPrice}<br>
-                <small>300฿ - 399฿</small>
+                2️⃣ <br>
+                ${level2Price}<br>
+                <small>ระดับที่ 2</small>
             </div>
         
             <div class="box">
-                💄 <br>
-                ${p35.sellPrice}<br>
-                <small>400฿ - 499฿</small>
+                3️⃣ <br>
+                ${level3Price}<br>
+                <small>ระดับที่ 3</small>
             </div>
         
             <div class="box private-box" style="margin-top:0;">
-                👑 <br>
-                ${p30.sellPrice}<br>
-                <small>500฿ - 599฿</small>
+                🇹🇭 <br>
+                ${level4Price}<br>
+                <small>คนไทย</small>
             </div>
         </div>
 
