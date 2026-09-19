@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.7</title>
+<title>Price Calculator V1.0.8</title>
 
 <style>
 body{
@@ -199,17 +199,18 @@ function calculate() {
         return;
     }
 
-const p10 = calcPrice(cost, 10);
+
 const p20 = calcPrice(cost, 20);
+const p25 = calcPrice(cost, 25);
 const p30 = calcPrice(cost, 30);
+const p35 = calcPrice(cost, 35);
 const p40 = calcPrice(cost, 40);
+const p45 = calcPrice(cost, 45);
 const p50 = calcPrice(cost, 50);
+const p55 = calcPrice(cost, 55);
+const p58 = calcPrice(cost, 58);
 const p60 = calcPrice(cost, 60);
 const p70 = calcPrice(cost, 70);
-const p80 = calcPrice(cost, 80);
-const p90 = calcPrice(cost, 90);
-const p95 = calcPrice(cost, 95);
-const p99 = calcPrice(cost, 99);
 
     document.getElementById('result').style.display = 'block';
 
@@ -225,26 +226,26 @@ const p99 = calcPrice(cost, 99);
 
         <div class="suggest">
             <div class="box best">
-                💊<br>
-                ${p30.sellPrice}<br>
+                💊 0฿ - 299฿<br>
+                ${p58.sellPrice}<br>
                 <small>ยา สินค้าทั่วไป</small>
             </div>
         
             <div class="box">
-                🌿<br>
-                ${p60.sellPrice}<br>
+                🌿 300฿ - 399฿<br>
+                ${p45.sellPrice}<br>
                 <small>สมุนไพร</small>
             </div>
         
             <div class="box">
-                💄<br>
-                ${p80.sellPrice}<br>
+                💄 400฿ - 499฿<br>
+                ${p35.sellPrice}<br>
                 <small>Beauty & Spa</small>
             </div>
         
             <div class="box private-box" style="margin-top:0;">
-                👑<br>
-                ${p99.sellPrice}<br>
+                👑 500฿ - 599฿<br>
+                ${p30.sellPrice}<br>
                 <small>Private Label</small>
             </div>
         </div>
