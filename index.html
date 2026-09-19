@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.10</title>
+<title>Price Calculator V1.0.11</title>
 
 <style>
 body{
@@ -226,13 +226,13 @@ const p70 = calcPrice(cost, 70);
 
         <div class="suggest">
             <div class="box best">
-                💊 <br>
+                🌿 <br>
                 ${p58.sellPrice}<br>
                 <small>0฿ - 299฿</small>
             </div>
         
             <div class="box">
-                🌿 <br>
+                💊 <br>
                 ${p45.sellPrice}<br>
                 <small>300฿ - 399฿</small>
             </div>
@@ -258,11 +258,37 @@ const p70 = calcPrice(cost, 70);
 
             <tr>
                 <td>ช่วงราคา</td>
-                <td>        0-299฿          300-399฿         400-499฿         500-599฿ </td>
-                <td>   ${p60.sellPrice} ${p50.sellPrice} ${p40.sellPrice} ${p35.sellPrice}</td>
-                <td>⭐️ ${p58.sellPrice} ${p45.sellPrice} ${p35.sellPrice} ${p30.sellPrice}</td>
-                <td>   ${p55.sellPrice} ${p40.sellPrice} ${p30.sellPrice} ${p25.sellPrice}</td>
             </tr>
+            <tr>
+                <td>0-299฿</td>
+                <td>${p60.sellPrice}</td>
+                <td>${p58.sellPrice}⭐️</td>
+                <td>${p55.sellPrice}</td>
+            </tr>
+            <tr>
+                <td>300-399฿</td>
+                <td>${p50.sellPrice}</td>
+                <td>${p45.sellPrice}⭐️</td>
+                <td>${p40.sellPrice}</td>
+            </tr>
+            <tr>    
+                <td>400-499฿</td>
+                <td>${p40.sellPrice}</td>
+                <td>${p35.sellPrice}⭐️</td>
+                <td>${p30.sellPrice}</td>
+             </tr>
+            <tr>   
+                <td>500-599฿</td>
+                <td>${p35.sellPrice}</td>
+                <td>${p30.sellPrice}⭐️</td>
+                <td>${p25.sellPrice}</td>
+            </tr>
+            <tr>    
+                <td>600฿+</td>
+                <td>${p30.sellPrice}</td>
+                <td>${p25.sellPrice}⭐️</td>
+                <td>${p20.sellPrice}</td>
+             </tr>
         </table>
 
         <details style="margin-top:15px;background:#f7f7f7;padding:10px;border-radius:10px;">
