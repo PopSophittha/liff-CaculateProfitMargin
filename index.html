@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.14</title>
+<title>Price Calculator V1.0.15</title>
 
 <style>
 body{
@@ -218,28 +218,28 @@ function calculate() {
     let level4Price;
 
     if (cost < 100) {
-        level1Price = p20.sellPrice;
-        level2Price = p20.sellPrice;
-        level3Price = p20.sellPrice;
-        level4Price = p20.sellPrice;
+        level1Price = p60.sellPrice;
+        level2Price = p58.sellPrice;
+        level3Price = p55.sellPrice;
+        level4Price = p35.sellPrice;
     } else if (cost < 200) {
-        level1Price = p35.sellPrice;
-        level2Price = p20.sellPrice;
-        level3Price = p20.sellPrice;
-        level4Price = p20.sellPrice;
+        level1Price = p50.sellPrice;
+        level2Price = p45.sellPrice;
+        level3Price = p40.sellPrice;
+        level4Price = p30.sellPrice;
     } else if (cost <= 500) {
         level1Price = p40.sellPrice;
-        level2Price = p20.sellPrice;
-        level3Price = p20.sellPrice;
-        level4Price = p20.sellPrice;
+        level2Price = p35.sellPrice;
+        level3Price = p30.sellPrice;
+        level4Price = p25.sellPrice;
     } else if (cost < 600) {
-        level1Price = p45.sellPrice;
-        level2Price = p20.sellPrice;
-        level3Price = p20.sellPrice;
+        level1Price = p35.sellPrice;
+        level2Price = p30.sellPrice;
+        level3Price = p25.sellPrice;
         level4Price = p20.sellPrice;
     } else {
-        level1Price = p50.sellPrice;
-        level2Price = p20.sellPrice;
+        level1Price = p30.sellPrice;
+        level2Price = p25.sellPrice;
         level3Price = p20.sellPrice;
         level4Price = p20.sellPrice;
     }
@@ -249,7 +249,7 @@ function calculate() {
     document.getElementById('result').innerHTML = `
 
         <div class="price-main">
-            ${p30.sellPrice.toLocaleString()} บาท
+            ${level2Price.toLocaleString()} บาท
         </div>
 
         <div style="text-align:center;font-size:18px;margin-bottom:15px;">
@@ -259,25 +259,25 @@ function calculate() {
         <div class="suggest">
             <div class="box best">
                 1️⃣ <br>
-                ${level1Price}<br>
+                ${level1Price.toLocaleString()}<br>
                 <small>ระดับที่ 1</small>
             </div>
         
             <div class="box">
                 2️⃣ <br>
-                ${level2Price}<br>
+                ${level2Price.toLocaleString()}<br>
                 <small>ระดับที่ 2</small>
             </div>
         
             <div class="box">
                 3️⃣ <br>
-                ${level3Price}<br>
+                ${level3Price.toLocaleString()}<br>
                 <small>ระดับที่ 3</small>
             </div>
         
             <div class="box private-box" style="margin-top:0;">
                 🇹🇭 <br>
-                ${level4Price}<br>
+                ${level4Price.toLocaleString()}<br>
                 <small>คนไทย</small>
             </div>
         </div>
@@ -285,21 +285,21 @@ function calculate() {
         <table>
             <tr>
                  <td>ต้นทุนสินค้า</td>
-                  <td>${cost.toFixed(2)} บาท</td>
+                  <td>${cost.toFixed(2).toLocaleString()} บาท</td>
              </tr>
     
              <tr>
                   <td>ค่าใช้จ่ายดำเนินงาน</td>
-                  <td>${p30.operatingCost.toFixed(2)} บาท</td>
+                  <td>${p30.operatingCost.toFixed(2).toLocaleString()} บาท</td>
               </tr>
                 
              <tr>
                  <td>ต้นทุนรวม</td>
-                 <td>${p30.totalCost.toFixed(2)} บาท</td>
+                 <td>${p30.totalCost.toFixed(2).toLocaleString()} บาท</td>
             </tr>
             <tr>
                 <td>พนักงานซื้อ</td>
-                <td>${p30.staffBuy} บาท</td>
+                <td>${p30.staffBuy.toLocaleString()} บาท</td>
             </tr>
         </table>
 
@@ -318,37 +318,38 @@ function calculate() {
                 </tr>
                 <tr>
                     <td>0-299฿</td>
-                    <td>${p60.sellPrice}</td>
-                    <td>${p58.sellPrice}</td>
-                    <td>${p55.sellPrice}</td>
-                    <td>${p35.sellPrice}</td>
+                    <td>${p60.sellPrice.toLocaleString()}</td>
+                    <td>${p58.sellPrice.toLocaleString()}</td>
+                    <td>${p55.sellPrice.toLocaleString()}</td>
+                    <td>${p35.sellPrice.toLocaleString()}</td>
                 </tr>
                 <tr>
                     <td>300-399฿</td>
-                    <td>${p50.sellPrice}</td>
-                    <td>${p45.sellPrice}</td>
-                    <td>${p40.sellPrice}</td>
-                    <td>${p30.sellPrice}</td>
+                    <td>${p50.sellPrice.toLocaleString()}</td>
+                    <td>${p45.sellPrice.toLocaleString()}</td>
+                    <td>${p40.sellPrice.toLocaleString()}</td>
+                    <td>${p30.sellPrice.toLocaleString()}</td>
                 </tr>
                 <tr>    
                     <td>400-499฿</td>
-                    <td>${p40.sellPrice}</td>
-                    <td>${p35.sellPrice}</td>
-                    <td>${p30.sellPrice}</td>
-                    <td>${p25.sellPrice}</td>
+                    <td>${p40.sellPrice.toLocaleString()}</td>
+                    <td>${p35.sellPrice.toLocaleString()}</td>
+                    <td>${p30.sellPrice.toLocaleString()}</td>
+                    <td>${p25.sellPrice.toLocaleString()}</td>
                  </tr>
                 <tr>   
                     <td>500-599฿</td>
-                    <td>${p35.sellPrice}</td>
-                    <td>${p30.sellPrice}</td>
-                    <td>${p25.sellPrice}</td>
-                    <td>${p20.sellPrice}</td>
+                    <td>${p35.sellPrice.toLocaleString()}</td>
+                    <td>${p30.sellPrice.toLocaleString()}</td>
+                    <td>${p25.sellPrice.toLocaleString()}</td>
+                    <td>${p20.sellPrice.toLocaleString()}</td>
                 </tr>
                 <tr>    
                     <td>600฿+</td>
-                    <td>${p30.sellPrice}</td>
-                    <td>${p25.sellPrice}</td>
-                    <td>${p20.sellPrice}</td>
+                    <td>${p30.sellPrice.toLocaleString()}</td>
+                    <td>${p25.sellPrice.toLocaleString()}</td>
+                    <td>${p20.sellPrice.toLocaleString()}</td>
+                    <td>${p20.sellPrice.toLocaleString()}</td>
                     <td> - </td>
                  </tr>
             </table>
