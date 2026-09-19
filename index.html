@@ -6,7 +6,7 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
-<title>Price Calculator V1.0.17</title>
+<title>Price Calculator V1.0.18</title>
 
 <style>
 body{
@@ -141,8 +141,8 @@ function nextEndingPrice(start, ending) {
     return p;
 }
 
-function calcPrice(totalCost, marginPercent) {
-
+function calcPrice(totalCost, operatingCost, marginPercent) {
+    
     const margin = marginPercent / 100;
 
     // Margin สูงสุด 99%
@@ -200,17 +200,17 @@ function calculate() {
     }
 
 
-    const p20 = calcPrice(totalCost, 20);
-    const p25 = calcPrice(totalCost, 25);
-    const p30 = calcPrice(totalCost, 30);
-    const p35 = calcPrice(totalCost, 35);
-    const p40 = calcPrice(totalCost, 40);
-    const p45 = calcPrice(totalCost, 45);
-    const p50 = calcPrice(totalCost, 50);
-    const p55 = calcPrice(totalCost, 55);
-    const p58 = calcPrice(totalCost, 58);
-    const p60 = calcPrice(totalCost, 60);
-    const p70 = calcPrice(totalCost, 70);
+    const p20 = calcPrice(totalCost, operatingCost, 20);
+    const p25 = calcPrice(totalCost, operatingCost, 25);
+    const p30 = calcPrice(totalCost, operatingCost, 30);
+    const p35 = calcPrice(totalCost, operatingCost, 35);
+    const p40 = calcPrice(totalCost, operatingCost, 40);
+    const p45 = calcPrice(totalCost, operatingCost, 45);
+    const p50 = calcPrice(totalCost, operatingCost, 50);
+    const p55 = calcPrice(totalCost, operatingCost, 55);
+    const p58 = calcPrice(totalCost, operatingCost, 58);
+    const p60 = calcPrice(totalCost, operatingCost, 60);
+    const p70 = calcPrice(totalCost, operatingCost, 70);
 
     let level1Price;
     let level2Price;
